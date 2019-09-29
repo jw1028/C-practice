@@ -1,0 +1,21 @@
+#include<stdio.h>
+#pragma warning (disable:4996)
+//相减法 
+int main()
+{
+	int a, b;
+	while (1)  //循环判断的作用 
+	{
+		printf("输入两个数字求最大公约数:");
+		scanf("%d%d", &a, &b);
+		while (a != b)
+		{
+			if (a > b)
+				a = a - b;
+			else
+				b = b - a;
+		}
+		printf("最大公约数是:%d\n", a);
+	}
+	return 0;
+}
