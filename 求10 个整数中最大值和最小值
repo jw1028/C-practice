@@ -1,0 +1,32 @@
+#include <stdio.h>
+#pragma warning (disable:4996)
+#define N 10
+//求最大值函数
+int max_func(int a[], int n)
+{
+	int i, max;
+	for (max = a[0], i = 1; i < N; i++)  //初始默认最大值为a[0],遍历数组元素
+		if (max < a[i])  //如果当前最大值<当前数组元素，则将该元素赋值给max
+			max = a[i];
+	return max;
+}
+//求最小值函数
+int min_func(int a[], int n)
+{
+	int i, min;
+	for (min = a[0], i = 1; i < N; i++)  //初始默认最小值为a[0],遍历数组元素
+		if (min > a[i])  //如果当前最小值>当前数组元素，则将该元素赋值给min
+			min = a[i];
+	return min;
+}
+int main()
+{
+	int arr[N], i;
+	int max, min;
+	for (i = 0; i < N; i++)  //输入10个数组元素
+		scanf("%d", &arr[i]);
+	max = max_func(arr, N);  //调用max_func()函数
+	min = min_func(arr, N);  //调用min_func()函数
+	printf("最大值=%d\n最小值=%d\n", max, min);  //输出结果
+	return 0;
+}
