@@ -1,0 +1,35 @@
+//猜数字小游戏
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#pragma warning (disable :4996)
+
+int main(void)
+{
+	/*生随机数
+	1.导入头文件  time.h stdlib.h
+	2.产生随机数种子
+	3.获取随机数
+	*/
+	srand((unsigned int)time(NULL));//每次随机数不一样
+	int value = rand() % 100;//0-99
+	int num;
+	for (;;)
+	{
+		printf("请输入一个数:\n");
+		scanf("%d", &num);
+		if (value > num)
+		{
+			printf("太小了");
+		}
+		else if (value < num)
+		{
+			printf("太大了");
+		}
+		else
+		{
+			printf("恭喜你猜对了");
+		}
+	}
+	return 0;
+}
