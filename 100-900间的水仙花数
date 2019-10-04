@@ -1,0 +1,18 @@
+//水仙花数：各个位数的立方和相加等于本身的数
+#include <stdio.h>
+int main()
+{
+
+	int i = 100;
+	do
+	{
+		int a, b, c;
+		a = i % 10;//个位
+		b = i / 10 % 10;//十位
+		c = i / 100;//百位
+		if (a * a * a + b * b * b + c * c * c == i)
+			printf("%d\n", i);
+		i++;
+	} while (i < 999);
+	return 0;
+}
