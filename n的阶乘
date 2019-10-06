@@ -1,0 +1,14 @@
+#include <stdio.h>
+#pragma warning (disable:4996)
+int main()
+{
+	int i, n;
+	int sum = 1;
+	printf("请输入要求的阶乘：");
+	scanf("%d", &n);
+	for (i = 1; i <= n; i++)
+		sum = sum * i;
+	printf("%d!=%d", n, sum);
+	printf("\n");
+	return 0;
+}
