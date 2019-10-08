@@ -1,0 +1,19 @@
+#include<stdio.h>
+int main()
+{
+	int arr[2][3] = { {1,2,3},{4,5,6} };
+	int i, j;
+	for (i = 0; i < 2; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			printf("%d\n", arr[i][j]);
+
+		}
+	}
+	printf("二维数组的大小：%d\n",sizeof arr);//行*列*sizeof(数据类型)
+	printf("二维数组行的大小：%d\n",sizeof (arr[0]));
+	printf("二维数组列的大小：%d\n",sizeof( arr[0] )/ sizeof(arr[0][0]));
+	return 0;
+}
+
