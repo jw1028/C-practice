@@ -1,0 +1,16 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<windows.h>
+int main()
+{
+	double temp, sum = 0;
+	int i;
+	for (i = 1; i <= 100; i++)
+	{
+		temp = 1.0 / i * (i % 2 ? 1 : -1);
+		sum = sum + temp;
+	}
+	printf("%lf\n", sum);
+    return 0;
+}
