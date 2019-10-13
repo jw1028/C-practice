@@ -1,0 +1,13 @@
+//所有数据成对出现，只有一个单独出现找出这个数
+#include<stdio.h>
+int main()
+{
+	int a = 5;
+	int b = 5;
+	int c = 4;
+	int d = 4;
+	int e = 3;
+	int x = a ^ b ^ c ^ d ^ e;
+	printf("没有成对出现的数为：%d", x);
+	return 0;
+}
