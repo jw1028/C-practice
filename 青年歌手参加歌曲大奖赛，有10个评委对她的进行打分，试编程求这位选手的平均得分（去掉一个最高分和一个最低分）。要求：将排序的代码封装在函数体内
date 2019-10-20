@@ -1,0 +1,64 @@
+//青年歌手参加歌曲大奖赛，有10个评委对她的进行打分，试编程求这位选手的平均得分（去掉一个最高分和一个最低分）。要求：将排序的代码封装在函数体内。 
+#include <stdio.h>
+#pragma warning (disable:4996)
+int* sort_1(int a[], int size);
+int* sort_2(int a[], int size);
+int main()
+{
+	int i;
+	float num = 0;
+	int a[10];
+	printf("please input score :\n");
+	for (i = 0; i < 10; i++)
+		scanf("%d", &a[i]);
+	sort_2(a, 10);
+	for (i = 0; i < 10; i++)
+		printf("%d ", a[i]);
+	puts("");
+	for (i = 1; i < 9; i++)
+	{
+		printf("num = %d\n", a[i]);
+		num = num + a[i];
+	}
+	printf("final average score is:%6.1f", num / 8);
+	puts("");
+	return 0;
+}
+int* sort_1(int a[], int size)
+{
+	int min = 0;
+	int i, j;
+	for (i = 0; i < size - 1; i++)
+	{
+		min = i;
+		for (j = i + 1; j < size; j++)
+		{
+			if (a[j] < a[min])
+				min = j;
+		}
+		if (min != i)
+		{
+			a[i] ^= a[min];
+			a[min] ^= a[i];
+			a[i] ^= a[min];
+		}
+	}
+	return a;
+}
+int* sort_2(int a[], int size)
+{
+	int i, j;
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size - 1 - i; j++)
+		{
+			if (a[j] > a[j + 1])
+			{
+				a[j] ^= a[j + 1];
+				a[j + 1] ^= a[j];
+				a[j] ^= a[j + 1];
+			}
+		}
+	}
+	return a;
+}
