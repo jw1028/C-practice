@@ -1,0 +1,26 @@
+//求矩阵左下三角形元素之和 
+#include <stdio.h>
+#pragma warning (disable:4996)
+#define N 6
+int main(int argc, char** argv) {
+	int i, j, sum = 0;
+	int a[N][N] = { 0 };
+	printf("input 5×5 data:\n");
+	for (i = 1; i < N; i++) {
+		printf("Input the %d line data:\n", i);
+		for (j = 1; j < N; j++)
+			scanf("%d", &a[i][j]);
+	}
+	for (i = 1; i < N; i++) {
+		for (j = 1; j < N; j++)
+			printf("%5d", a[i][j]);
+		printf("\n");
+	}
+	for (i = 1; i < N; i++) {
+		for (j = 1; j <= i; j++) {
+			printf("%d\n", a[i][j]);
+			sum = sum + a[i][j];
+		}
+	}
+	printf("sum=%d\n", sum);
+}
