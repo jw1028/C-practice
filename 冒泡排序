@@ -12,7 +12,7 @@ int main()
 		for (int j = 0; j < 10 - 1-i; j++)
 			{
 			//比较两个元素 满足情况进行交换
-			//  通过富豪控制排序方式
+			//  通过符号控制排序方式
 				if (arr[j] > arr[j + 1])
 				{
 					int temp = arr[j];
