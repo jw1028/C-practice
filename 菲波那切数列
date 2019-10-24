@@ -22,3 +22,44 @@ int main()
 	printf("ret=%d", ret);
 	return 0;
 }
+//迭代实现
+#include <stdio.h>
+#pragma warning (disable:4996)
+
+int Fibonacci(int n)
+{
+	if (n <= 0)
+	{
+		return 0;
+	}
+	else 
+	{
+       if (n == 1 || n == 2)
+	   {
+		 return 1;
+	   }
+	   else
+	   {
+		   int num1 = 1;
+		   int num2 = 1;
+		   int num = 0;
+		   for (int i = 3; i <= n; i++)
+		   {
+			   num = num1 + num2;
+			   num1 = num2;
+			   num2 = num;
+		   }
+		   return num2;
+		   printf("%d", num2);
+	   }
+	}
+}
+int main()
+{
+	int n = 0;
+	printf("Please Enter Number:");
+	scanf("%d", &n);
+	int ret=Fibonacci(n);
+	printf("%d", ret);
+	return 0;
+}
