@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <windows.h>
+#pragma warning(disable:4996)
+int fun(int a, int b)
+{
+	if (b == 0)
+	{
+		return 1;
+	}
+	else if (b == 1)
+	{
+		return a;
+	}
+	else
+	{
+		return a * fun(a, b - 1);
+	}
+}
+int main()
+{
+	int n = 0;
+	int k = 0;
+	int ret = 0;
+	printf("n^k,Please Enter n,k:\n");
+	scanf("%d%d", &n, &k);
+	printf("运算结果：\n");
+	printf("%d\n", fun(n, k));
+	system("pause");
+	return 0;
+}
