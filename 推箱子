@@ -1,0 +1,227 @@
+#include "stdafx.h"
+#include <graphics.h>
+#include <conio.h>
+#pragma comment(lib,"winmm.lib")
+
+//定义地图大小 8*8
+int Map[8][8]
+{
+	0,0,1,1,1,0,0,0,
+	0,0,1,3,1,0,0,0,
+	0,0,1,0,1,1,1,1,
+	1,1,1,4,0,4,3,1,
+	1,3,0,4,5,1,1,1,
+	1,1,1,1,4,1,0,0,
+	0,0,0,1,3,1,0,0,
+	0,0,0,1,1,1,0,0
+};
+
+int winner4 = 0;
+int winner7 = 0;
+
+IMAGE Wall;
+IMAGE Boom1, Boom2;
+IMAGE People1, People2;
+IMAGE Destination1, Destination2;
+IMAGE BackGroundImage;
+IMAGE Box1, Box2;
+
+//加载图片
+void GameInit()
+{
+	loadimage(&BackGroundImage, "./loop/背景.jpg");
+	loadimage(&Wall, "./loop/wall.jpg");
+	loadimage(&Destination1, "./loop/mbb.jpg");
+	loadimage(&People1, "./loop/ren.jpg");
+	loadimage(&Box1, "./loop/zd.jpg");
+	loadimage(&Box2, "./loop/zd副本.jpg");
+	loadimage(&Boom1, "./loop/boom.jpg");
+	loadimage(&Boom2, "./loop/boom副本.jpg");
+}
+
+//打印图片
+void GamePaint()
+{
+	putimage(0, 0, &BackGroundImage);
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			switch (Map[j][i])
+			{
+			case 1:
+				putimage(i * 45, j * 45, &Wall);
+				break;
+			case 3:
+				putimage(i * 45, j * 45, &Destination1);
+				break;
+			case 5:
+				putimage(i * 45, j * 45, &People1);
+				break;
+			case 4:
+				putimage(i * 45, j * 45, &Box2, SRCPAINT);
+				putimage(i * 45, j * 45, &Box1, SRCAND);
+				break;
+			case 7:
+				putimage(i * 45, j * 45, &Boom2, SRCPAINT);
+				putimage(i * 45, j * 45, &Boom1, SRCAND);
+				break;
+			case 8:
+				putimage(i * 45, j * 45, &People1);
+				break;
+			}
+		}
+	}
+}
+
+//游戏判定
+int GameWin()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			if (Map[i][j] == 4)
+			{
+				winner4++;
+			}
+			if (Map[i][j] == 7)
+			{
+				winner7++;
+			}
+		}
+	}
+	if (winner4 == winner7)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+//游戏控制
+void GamePlay()
+{
+	char ch;
+	int x, y;
+	BeginBatchDraw();
+	while (1)
+	{
+		if (!GameWin())
+		{
+			GamePaint();
+			FlushBatchDraw();
+			//MessageBox(GetHWnd(), "YOU WIN", "GO", MB_OK);
+			break;
+		}
+		cleardevice();
+		GamePaint();
+		FlushBatchDraw();
+		//找到小鸟的位置
+		for (x = 0; x < 8; x++)
+		{
+			for (y = 0; y < 8; y++)
+			{
+				if (Map[x][y] == 5 || Map[x][y] == 8)
+				{
+					break;
+				}
+			}
+			if (Map[x][y] == 5 || Map[x][y] == 8)
+			{
+				break;
+			}
+			//for循环结束后 Map[x][y]就是小鸟的位置
+		}
+		ch = getch();
+		switch (ch)
+		{
+		case 72:
+		case'W':
+		case'w':
+			if (Map[x - 1][y] == 0 || Map[x - 1][y] == 3)
+			{
+				Map[x][y] = Map[x][y] - 5;
+				Map[x - 1][y] = Map[x - 1][y] + 5;
+			}
+			else if (Map[x - 1][y] == 4 || Map[x - 1][y] == 7)
+			{
+				if (Map[x - 2][y] == 0 || Map[x - 2][y] == 3)
+				{
+					Map[x - 2][y] += 4;
+					Map[x - 1][y] += 1;
+					Map[x][y] -= 5;
+				}
+			}
+			break;
+		case 80:
+		case 's':
+		case 'S':
+			if (Map[x + 1][y] == 0 || Map[x + 1][y] == 3)
+			{
+				Map[x][y] -=5;
+				Map[x + 1][y] += 5;
+			}
+			else if (Map[x + 1][y] == 4 || Map[x + 1][y] == 7)
+			{
+				if (Map[x + 2][y] == 0 || Map[x + 2][y] == 3)
+				{
+					Map[x + 2][y] += 4;
+					Map[x + 1][y] += 1;
+					Map[x][y] -= 5;
+				}
+			}
+			break;
+		case 75:
+		case 'A':
+		case 'a':
+			if (Map[x][y - 1] == 0 || Map[x][y - 1] == 3)
+			{
+				Map[x][y - 1] += 5;
+				Map[x][y] -= 5;
+			}
+			else if (Map[x][y - 1] == 4 || Map[x][y - 1] == 7)
+			{
+				if (Map[x][y - 2] == 0 || Map[x][y - 2] == 3)
+				{
+					Map[x][y - 2] += 4;
+					Map[x][y - 1] += 1;
+					Map[x][y] -= 5;
+				}
+			}
+			break;
+		case 77:
+		case 'D':
+		case 'd':
+			if (Map[x][y + 1] == 0 || Map[x][y + 1] == 3)
+			{
+				Map[x][y + 1] += 5;
+				Map[x][y] -= 5;
+			}
+			else if (Map[x][y + 1] == 4 || Map[x][y + 1] == 7)
+			{
+				if (Map[x][y + 2] == 0 || Map[x][y + 2] == 3)
+				{
+					Map[x][y + 2] += 4;
+					Map[x][y + 1] += 1;
+					Map[x][y] -= 5;
+				}
+			}
+			break;
+		}
+	}
+	EndBatchDraw();
+	MessageBox(GetHWnd(), "YOU WIN", "OK,GO ON!", MB_OK);
+}
+
+//主函数
+int main()
+{
+	initgraph(360, 360);
+	GameInit();
+	GamePaint();
+	GamePlay();
+    return 0;
+}
