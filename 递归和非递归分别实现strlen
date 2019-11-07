@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<windows.h>
+int main()
+{
+	int i = 1;
+	double sum = 0.0;
+	int flag = 1;
+	for (; i <= 100; i++) {
+		sum = sum + (1.0 * flag) / i;
+		flag = -flag;
+	}
+	printf("%f\n", sum);
+	system("pause");
+	return 0;
+}
+#include<stdio.h>
+
+void strlen2(char* string);
+int main()
+{
+	char a[] = "hello";
+	strlen2(a);
+	return 0;
+}
+int m = 0;
+void strlen2(char *string)
+{
+	if ('\0' != *(++string))
+	{
+		m++;
+		strlen2(string);
+	}
+	else
+	{
+		m++;
+		printf("×Ö·û³¤¶ÈÊÇ%d\n", m);
+	}
+}
