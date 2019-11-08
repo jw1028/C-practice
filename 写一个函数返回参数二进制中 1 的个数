@@ -1,0 +1,25 @@
+#include<stdio.h>
+#pragma warning (disable:4996)
+int count_one_bits(unsigned int n)
+{
+	int count = 0;
+	while (n != 0)//二进制数中必有1
+	{
+		if (n % 2 == 1)//二进制中发现1
+		{
+			count++;
+		}
+		n = n / 2;//去掉末尾的一个1
+	}
+	return count;
+}
+int main()
+{
+	int n = 0;
+	printf("Please Enter Number:\n");
+	scanf("%d", &n);
+	int ret = count_one_bits(n);
+	printf("ret=%d\n", ret);
+	system("pause");
+	return 0;
+}
