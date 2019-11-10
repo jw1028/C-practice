@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<math.h>
+#pragma warning (disable:4996)
+int main()
+{
+	int m = 0;
+	int n = 0;
+	int i = 0;
+	int count = 0;
+	printf("请输入两个数：\n");
+	scanf("%d%d", &m, &n);
+	for (i = 0; i < 32; i++)
+	{
+		if (((m >> i) & 1) ^ ((n >> i) & 1)) //让m和n右移i位然后分别和1相与，是为了不受其他二进制位的干扰，然后再异或 如果是真count++，32位地址线
+			count++;
+	}
+	printf("count=%d", count);
+	system("pause");
+	return 0;
+}
