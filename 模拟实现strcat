@@ -1,0 +1,26 @@
+#include <stdio.h>  
+#include<assert.h>  
+#include<Windows.h>
+char* my_strcat(char* dest, char* src)
+{
+	char* cp = dest;
+	assert(src && dest);
+	while (*dest != '\0')
+	{
+		dest++;
+	}
+	while (*dest++ = *src++)
+	{
+		;
+	}
+	return cp;
+}
+
+int main()
+{
+	char str[32] = "abcd";
+	char buf[32] = "efgh";
+	printf("%s\n", my_strcat(str, buf));
+	system("pause");
+	return 0;
+}
