@@ -1,0 +1,22 @@
+#define   _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+int search(int* arr, int size)
+{
+	int ret = 0;
+	for (int i = 0; i < size - 1; i++)
+	{
+		ret = arr[i] ^ arr[i - 1];
+	}
+	return ret;
+}
+int main()
+{
+	int arr[11] = { 1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6 };
+	int size = sizeof(arr) / sizeof(arr[0]);
+	int once = 0;
+	once = search(arr, size);
+	printf("%d\n", once);
+	system("pause");
+	return 0;
+}
