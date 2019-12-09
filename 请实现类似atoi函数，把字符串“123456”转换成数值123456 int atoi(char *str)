@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#pragma warning(disable:4996)
+#define N 32
+int my_atoi(char* s);
+int main()
+{
+	char a[N];
+	scanf("%s", a);
+	int num = 0;
+	num = my_atoi(a);
+	printf("%d\n", num);
+	return 0;
+}
+int my_atoi(char* s)
+{
+	char* p = s;
+	char c;
+	int i = 0;
+	while (c = *p++)
+	{
+		if (c >= '0' && c <= '9')
+		{
+			i = i * 10 + (c - '0');
+		}
+		else
+			return -1;
+	}
+	return i;
+}
