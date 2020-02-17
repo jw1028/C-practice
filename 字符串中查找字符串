@@ -1,0 +1,31 @@
+char* my_strfind(char* src, char* dest)
+{
+	char* fsrc = src;//遍历原字符串指针
+	char* rsrc = src;//记录相同字符串的首地址
+	char* tdest = dest;
+	while (*fsrc)
+	{
+		rsrc = fsrc;
+		while (*fsrc == *tdest)
+		{
+			fsrc++;
+			tdest++;
+        }
+		if (*tdest == '\0')
+		{
+			return rsrc;
+		}
+		fsrc = rsrc;
+		tdest = dest;
+		fsrc++;
+	}
+	return NULL;
+}
+int main()
+{
+	char src[] = "hello world";
+	char dest[] = "llo";
+	char* p = my_strfind(src, dest);
+	printf("%s", p);
+	return 0;
+}
