@@ -1,0 +1,18 @@
+int main()
+{
+	char ch[] = "hewqjfsdajkgf saugfuadshfgu aui";
+	//统计字符串出现的次数
+	int arr[26] = { 0 };
+	for (int i = 0; i < strlen(ch); i++)
+	{
+		arr[ch[i] - 'a']++;
+	}
+	for (int i = 0; i < 26; i++)
+	{
+		if (arr[i])
+		{
+			printf("字母%c出现的次数为%d\n", i + 'a', arr[i]);
+		}
+	}
+	return 0;
+}
